@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>最警告的一集⚡⚡⚡</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            color: white;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        img {
+            width: 300px;
+            height: auto;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var confirmed = confirm("oioioi！小子!有點火熱啊?(哥們因為現在是夏天)");
+            if (confirmed) {
+                alert("好勒～哥們慢走OWOb");
+                var images = [
+                    "1.png",
+                    "2.png",
+                    "3.png"
+                ];
+                var imgElement = document.getElementById("funnyImage");
+                var index = 0;
+                setInterval(function() {
+                    imgElement.src = images[index];
+                    index = (index + 1) % images.length;
+                }, 100); // 每100毫秒切換一次
+                setTimeout(function() {
+                    window.location.href = "https://youtube.com/clip/UgkxASANTEVLlrSex0gtL1I1_Msfi7vWjHPf?si=JjezKaeFcc4_EjsN";
+                }, 3000);
+            } else {
+                alert("拜託看一下，哥們");
+            }
+        };
+    </script>
+</head>
+<body>
+    <img id="funnyImage" src="" alt="...">
+    <h2>正在植入病毒中...</h2>
+</body>
+</html>
