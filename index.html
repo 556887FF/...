@@ -1,81 +1,116 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <title>最有毒的一集⚡⚡⚡</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      height: 100%;
-      background-color: black;
-      color: lime;
-      font-family: monospace;
-      font-size: 30px;
-      text-align: center;
-    }
-    #message {
-      position: absolute;
-      top: 40%;
-      width: 100%;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>藍白屏模擬 - 致命錯誤</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0000FF; /* 藍色背景 */
+            color: #FFFFFF; /* 白色文字 */
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        #bsod {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #progressBar {
+            width: 100%;
+            height: 30px;
+            background-color: #444;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #progress {
+            width: 0%;
+            height: 100%;
+            background-color: #00FF00;
+            border-radius: 5px;
+        }
+
+        #footer {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: #CCCCCC;
+        }
+    </style>
 </head>
 <body>
-  <div id="message" style="display:none;">⚡ 病毒啟動中 ⚡</div>
+    <div id="bsod">
+        <h1>😵 你的裝置遇到問題，因此必須重新啟動</h1>
+        <p>正在收集某些錯誤資訊，然後我們會為你重新啟動。</p>
+        <p>請稍後...</p>
+        <div id="progressBar">
+            <div id="progress"></div>
+        </div>
+        <p>已完成 <span id="percent">0</span>%</p>
+    </div>
+    <div id="footer">如需詳細資訊，請稍後線上搜尋此錯誤：CRITICAL_PROCESS_DIED</div>
 
-  <script>
-    window.onload = function() {
-      var confirmed = confirm("oioioi！小子!你有點有毒啊?(出事我不負責)");
-
-      if (confirmed) {
-        alert("好勒～哥們慢走OWOb");
-
-        document.getElementById('message').style.display = 'block';
-
-        // 全螢幕
-        function goFullscreen() {
-          const elem = document.documentElement;
-          if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-          } else if (elem.mozRequestFullScreen) { 
-            elem.mozRequestFullScreen();
-          } else if (elem.webkitRequestFullscreen) { 
-            elem.webkitRequestFullscreen();
-          } else if (elem.msRequestFullscreen) { 
-            elem.msRequestFullscreen();
-          }
-        }
-        goFullscreen();
-
-        // 背景閃爍
-        setInterval(() => {
-          document.body.style.backgroundColor = (document.body.style.backgroundColor === 'black') ? 'white' : 'black';
-          document.body.style.color = (document.body.style.color === 'lime') ? 'black' : 'lime';
-        }, 100);
-
-        // 滑鼠亂飛
-        setInterval(() => {
-          window.moveBy(Math.random() * 10 - 5, Math.random() * 10 - 5);
-        }, 50);
-
-        // 無限彈窗
-        setInterval(() => {
-          alert('⚠️ 警告：病毒已經完全啟動！請立即重開機！！⚡⚡⚡');
-        }, 1500);
-
-        // 鎖F5防止重整理
-        window.onkeydown = function(e) {
-          if (e.key === "F5" || (e.ctrlKey && e.key === 'r')) {
+    <script>
+        // 禁用右鍵
+        document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
-          }
+        });
+
+        // 禁用 F5、F12 以及其他快捷鍵
+        document.onkeydown = function (e) {
+            if (e.key === 'F5' || e.key === 'F12' || (e.ctrlKey && e.key === 'r')) {
+                e.preventDefault();
+            }
         };
 
-      } else {
-        alert("拜託看一下，哥們");
-      }
-    };
-  </script>
+        // 自動全螢幕
+        function goFullscreen() {
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) {
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        }
+
+        // 進度條動畫
+        let progress = 0;
+        const progressBar = document.getElementById('progress');
+        const percentText = document.getElementById('percent');
+        
+        function updateProgress() {
+            progress += 1;
+            progressBar.style.width = progress + '%';
+            percentText.innerText = progress;
+
+            if (progress < 100) {
+                setTimeout(updateProgress, 100);
+            }
+        }
+
+        // 啟動全螢幕模式
+        goFullscreen();
+
+        // 開始進度條
+        setTimeout(updateProgress, 1000);
+    </script>
 </body>
 </html>
