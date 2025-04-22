@@ -23,44 +23,57 @@
   </style>
 </head>
 <body>
-  <div id="message">⚡ 病毒啟動中 ⚡</div>
-  
+  <div id="message" style="display:none;">⚡ 病毒啟動中 ⚡</div>
+
   <script>
-    // 全螢幕
-    function goFullscreen() {
-      const elem = document.documentElement;
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.mozRequestFullScreen) { /* Firefox */
-        elem.mozRequestFullScreen();
-      } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { /* IE/Edge */
-        elem.msRequestFullscreen();
-      }
-    }
-    goFullscreen();
+    window.onload = function() {
+      var confirmed = confirm("oioioi！小子!你有點有毒啊?(出事我不負責)");
 
-    // 背景閃爍
-    setInterval(() => {
-      document.body.style.backgroundColor = (document.body.style.backgroundColor === 'black') ? 'white' : 'black';
-      document.body.style.color = (document.body.style.color === 'lime') ? 'black' : 'lime';
-    }, 100);
+      if (confirmed) {
+        alert("好勒～哥們慢走OWOb");
 
-    // 滑鼠亂飛
-    setInterval(() => {
-      window.moveBy(Math.random() * 10 - 5, Math.random() * 10 - 5);
-    }, 50);
+        document.getElementById('message').style.display = 'block';
 
-    // 不停彈窗
-    setInterval(() => {
-      alert('⚠️ 警告：病毒已經完全啟動！請立即重開機！！⚡⚡⚡');
-    }, 1500);
+        // 全螢幕
+        function goFullscreen() {
+          const elem = document.documentElement;
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.mozRequestFullScreen) { 
+            elem.mozRequestFullScreen();
+          } else if (elem.webkitRequestFullscreen) { 
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { 
+            elem.msRequestFullscreen();
+          }
+        }
+        goFullscreen();
 
-    // 鎖定F5防止重整理
-    window.onkeydown = function(e) {
-      if (e.key === "F5" || (e.ctrlKey && e.key === 'r')) {
-        e.preventDefault();
+        // 背景閃爍
+        setInterval(() => {
+          document.body.style.backgroundColor = (document.body.style.backgroundColor === 'black') ? 'white' : 'black';
+          document.body.style.color = (document.body.style.color === 'lime') ? 'black' : 'lime';
+        }, 100);
+
+        // 滑鼠亂飛
+        setInterval(() => {
+          window.moveBy(Math.random() * 10 - 5, Math.random() * 10 - 5);
+        }, 50);
+
+        // 無限彈窗
+        setInterval(() => {
+          alert('⚠️ 警告：病毒已經完全啟動！請立即重開機！！⚡⚡⚡');
+        }, 1500);
+
+        // 鎖F5防止重整理
+        window.onkeydown = function(e) {
+          if (e.key === "F5" || (e.ctrlKey && e.key === 'r')) {
+            e.preventDefault();
+          }
+        };
+
+      } else {
+        alert("拜託看一下，哥們");
       }
     };
   </script>
